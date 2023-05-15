@@ -1,4 +1,19 @@
 
+# FizzBuzz Android Application
+
+This is an Android application that provides a modern twist on the classic coding exercise, FizzBuzz. The app is built following the best practices and using the latest technology stack provided by Jetpack.
+
+The application allows users to input two numbers, two words, and a limit, and will generate a FizzBuzz sequence based on these inputs. The results are efficiently displayed using a paginated list, ensuring optimal performance even for large lists.
+
+Key Features:
+- **Input Validation**: The application validates user inputs and provides informative error messages when the inputs are invalid.
+- **Paginated List**: The results are displayed in a paginated list, ensuring the application remains performant even with large FizzBuzz sequences.
+- **Modern Tech Stack**: The application is built with Kotlin and uses several Jetpack libraries, including Compose for the UI, Paging 3 for list display, and Hilt for dependency injection. The application follows the MVVM architectural pattern.
+- **Unit Tests**: The application includes unit tests to verify the correctness of the logic.
+- **Shared Build Logic**: This project includes a shared-build-logic subproject that serves as a repository for Gradle plugins, enabling distributed logic reuse across all modules.
+
+The FizzBuzz Android application is an excellent demonstration of how to create a modern, robust, and maintainable Android application.
+
 # Android Technical Test Project
 
 This Android technical test project follows the Clean Architecture to ensure a separation of      
