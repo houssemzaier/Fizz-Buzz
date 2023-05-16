@@ -54,39 +54,8 @@ androidxTracing = "1.1.0"
 androidxUiAutomator = "2.2.0"
 androidxPaging = "3.1.1"
 pagingCompose = "1.0.0-alpha19"
-#MEDIA
-exoplayer = "1.0.0"
-
-#FIREBASE
-gmsPlugin = "4.3.14"
-firebaseBom = "31.2.0"
-firebaseCrashlyticsPlugin = "2.9.2"
-firebasePerfPlugin = "1.4.2"
-#COIL
-coil = "2.2.2"
-#ROOM
-room = "2.5.0"
-#KSP
-ksp = "1.8.0-1.0.9"
-#NETWORK
-okhttp = "4.10.0"
-retrofit = "2.9.0"
-retrofitKotlinxSerializationJson = "0.8.0"
-ktor = "2.3.0"
-#stetho
-stetho = "1.6.0"
-#PROTOBUF
-protobuf = "3.21.12"
-protobufPlugin = "0.8.19"
 #QUALITY
 gradleKtlint = "11.3.1"
-lint = "30.3.1"
-universalCompose = "1.4.0"
-#OTHERS
-secrets = "2.0.1"
-#SPRING
-springBoot = "3.0.6"
-springDependencyManagement = "1.1.0"
 #DESUGAR
 androidDesugarJdkLibs = "2.0.2"
 ###############################################################################################################################
@@ -103,12 +72,6 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
 hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltExt" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
-
-#STETHO
-facebook-stetho = { group = "com.facebook.stetho", name = "stetho", version.ref = "stetho" }
-facebook-stetho-okhttp = { group = "com.facebook.stetho", name = "stetho-okhttp3", version.ref = "stetho" }
-#OKHTTP
-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 #TEST-UNIT
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
@@ -118,14 +81,6 @@ mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref =
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 google-testParameterInjector = { group = "com.google.testparameterinjector", name = "test-parameter-injector", version.ref = "testParameterInjector" }
-#KTOR
-ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
-ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
-ktor-client-java = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
-ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
-ktor-client-serialization= { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor" }
-ktor-client-logging-jvm = { group = "io.ktor", name = "ktor-client-logging-jvm", version.ref = "ktor" }
 #COROUTINES
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-kotlin = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
@@ -141,7 +96,7 @@ androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
-
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivityCompose" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
@@ -154,26 +109,11 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 #ANDROID
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
-#KSP
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 #DAGGER
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-#FIREBASE
-gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
-firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerfPlugin" }
 #QUALITY
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "gradleKtlint" }
-#UNIVERSAL-COMPOSE
-compose-universal = { id = "org.jetbrains.compose", version.ref = "universalCompose" }
-#OTHERS
-protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
-secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
-#SPRING
-spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
-spring-dependencyManagement = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
