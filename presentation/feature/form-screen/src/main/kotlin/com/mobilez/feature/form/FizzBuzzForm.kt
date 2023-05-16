@@ -13,8 +13,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,12 +29,21 @@ import com.mobilez.design.theme.FizzBuzzTheme
 import com.mobilez.feature.form.FormUiModel.Companion.toQuery
 import com.mobilez.fizzbuzz.domain.models.Query
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun FizzBuzzForm(
     formStateUiModel: FormUiModel,
     onValueChanged: (FormUiModel) -> Unit,
     onSubmitClick: (Query) -> Unit,
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    val input1FocusRequester = remember { FocusRequester() }
+    val input2FocusRequester = remember { FocusRequester() }
+    val word1FocusRequester = remember { FocusRequester() }
+    val word2FocusRequester = remember { FocusRequester() }
+    val limitFocusRequester = remember { FocusRequester() }
+
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -42,6 +57,7 @@ fun FizzBuzzForm(
             text = "FizzBuzz",
             style = MaterialTheme.typography.titleLarge,
         )
+
         FizzBuzzFormTextField(
             value = formStateUiModel.input1,
             onValueChange = { onValueChanged(formStateUiModel.copy(input1 = it)) },
@@ -49,6 +65,8 @@ fun FizzBuzzForm(
             isError = formStateUiModel.errors.input1Error.isNotEmpty(),
             errorText = formStateUiModel.errors.input1Error,
             keyboardType = KeyboardType.Number,
+            focusRequester = input1FocusRequester,
+            onImeActionNextPerformed = { input2FocusRequester.requestFocus() },
         )
 
         FizzBuzzFormTextField(
@@ -58,6 +76,8 @@ fun FizzBuzzForm(
             isError = formStateUiModel.errors.input2Error.isNotEmpty(),
             errorText = formStateUiModel.errors.input2Error,
             keyboardType = KeyboardType.Number,
+            focusRequester = input2FocusRequester,
+            onImeActionNextPerformed = { word1FocusRequester.requestFocus() },
         )
 
         FizzBuzzFormTextField(
@@ -66,6 +86,8 @@ fun FizzBuzzForm(
             label = "Word 1",
             isError = formStateUiModel.errors.word1Error.isNotEmpty(),
             errorText = formStateUiModel.errors.word1Error,
+            focusRequester = word1FocusRequester,
+            onImeActionNextPerformed = { word2FocusRequester.requestFocus() },
         )
 
         FizzBuzzFormTextField(
@@ -74,6 +96,8 @@ fun FizzBuzzForm(
             label = "Word 2",
             isError = formStateUiModel.errors.word2Error.isNotEmpty(),
             errorText = formStateUiModel.errors.word2Error,
+            focusRequester = word2FocusRequester,
+            onImeActionNextPerformed = { limitFocusRequester.requestFocus() },
         )
 
         FizzBuzzFormTextField(
@@ -83,10 +107,15 @@ fun FizzBuzzForm(
             isError = formStateUiModel.errors.limitError.isNotEmpty(),
             errorText = formStateUiModel.errors.limitError,
             keyboardType = KeyboardType.Number,
+            focusRequester = limitFocusRequester,
+            imeAction = ImeAction.Done,
+            onImeActionDonePerformed = {
+                keyboardController?.hide() ?: if (formStateUiModel.isValid) onSubmitClick(formStateUiModel.toQuery()) else Unit
+            },
         )
 
         Button(
-            onClick = { onSubmitClick(formStateUiModel.toQuery()) },
+            onClick = { onSubmitWhenFormStateIsValid(onSubmitClick, formStateUiModel) },
             modifier = Modifier
                 .align(Alignment.End)
                 .padding(
@@ -98,8 +127,18 @@ fun FizzBuzzForm(
             Text("Submit")
         }
     }
+    DisposableEffect(Unit) {
+        input1FocusRequester.requestFocus()
+        onDispose { }
+    }
 }
 
+private fun onSubmitWhenFormStateIsValid(
+    onSubmitClick: (Query) -> Unit,
+    formStateUiModel: FormUiModel,
+) {
+    onSubmitClick(formStateUiModel.toQuery())
+}
 
 @Preview
 @Composable
