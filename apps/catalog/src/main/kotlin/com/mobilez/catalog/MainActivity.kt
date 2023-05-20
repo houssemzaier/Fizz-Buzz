@@ -51,6 +51,7 @@ class MainActivity : ComponentActivity() {
                             label = "test",
                             isError = false,
                             errorText = "test",
+                            focusRequester = remember { FocusRequester() },
                         )
                         Divider()
                         WordItemContent(
